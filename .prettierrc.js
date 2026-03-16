@@ -1,0 +1,11 @@
+const config = {
+  trailingComma: 'es5',
+  tabWidth: 2,
+  useTabs: false,
+  semi: false,
+  singleQuote: true,
+  printWidth: 120,
+  arrowParens: 'avoid'
+}
+
+export default config
