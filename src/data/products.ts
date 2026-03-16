@@ -1,0 +1,101 @@
+import type { Product } from '../types/interfaces'
+import { randomUUID } from 'node:crypto'
+
+export const products: Product[] = [
+  {
+    id: randomUUID(),
+    name: "Clean Code",
+    description: "A handbook of agile software craftsmanship by Robert C. Martin.",
+    price: 34.99,
+    category: "books",
+    inStock: true
+  },
+  {
+    id: randomUUID(),
+    name: "The Pragmatic Programmer",
+    description: "Classic book about practical software development practices.",
+    price: 39.99,
+    category: "books",
+    inStock: false
+  },
+  {
+    id: randomUUID(),
+    name: "Design Patterns",
+    description: "Elements of reusable object-oriented software.",
+    price: 44.5,
+    category: "books",
+    inStock: true
+  },
+  {
+    id: randomUUID(),
+    name: "You Don't Know JS Yet",
+    description: "Deep dive into JavaScript core mechanisms.",
+    price: 29.99,
+    category: "books",
+    inStock: false
+  },
+  {
+    id: randomUUID(),
+    name: "Refactoring",
+    description: "Improving the design of existing code.",
+    price: 42.99,
+    category: "books",
+    inStock: true
+  },
+  {
+    id: randomUUID(),
+    name: "Introduction to Algorithms",
+    description: "Comprehensive guide to modern algorithms.",
+    price: 59.99,
+    category: "books",
+    inStock: true
+  },
+  {
+    id: randomUUID(),
+    name: "Eloquent JavaScript",
+    description: "A modern introduction to programming using JavaScript.",
+    price: 25.99,
+    category: "books",
+    inStock: true
+  },
+  {
+    id: randomUUID(),
+    name: "JavaScript: The Good Parts",
+    description: "Classic book covering the elegant parts of JavaScript.",
+    price: 21.99,
+    category: "books",
+    inStock: false
+  },
+  {
+    id: randomUUID(),
+    name: "Domain-Driven Design",
+    description: "Tackling complexity in the heart of software.",
+    price: 47.99,
+    category: "books",
+    inStock: true
+  },
+  {
+    id: randomUUID(),
+    name: "The Mythical Man-Month",
+    description: "Essays on software engineering and project management.",
+    price: 19.99,
+    category: "books",
+    inStock: true
+  },
+  {
+    id: randomUUID(),
+    name: "Soft Skills",
+    description: "Developer life manual covering career and productivity.",
+    price: 28.99,
+    category: "books",
+    inStock: true
+  },
+  {
+    id: randomUUID(),
+    name: "Code Complete",
+    description: "Practical handbook of software construction.",
+    price: 49.99,
+    category: "books",
+    inStock: true
+  }
+]
