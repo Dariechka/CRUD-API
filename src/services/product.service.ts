@@ -8,4 +8,8 @@ export const productService = {
     products.push(product)
     return product
   },
+  deleteProduct: (id: string) => {
+    const index = products.findIndex(product => product.id === id)
+    return products.splice(index, 1)
+  },
 };
