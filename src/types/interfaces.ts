@@ -12,3 +12,7 @@ export interface Product {
   category: string
   inStock: boolean
 }
+
+export interface ErrorResponse {
+  message: string
+}

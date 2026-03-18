@@ -12,4 +12,13 @@ export const productService = {
     const index = products.findIndex(product => product.id === id)
     return products.splice(index, 1)
   },
+  putProduct: (product: Product) => {
+    products.forEach(item => {
+      if (item.id === product.id) {
+        Object.assign(item, product)
+      }
+      return item
+    })
+    return product
+  }
 };
