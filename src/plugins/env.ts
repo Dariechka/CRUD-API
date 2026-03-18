@@ -1,6 +1,7 @@
 import fp from 'fastify-plugin'
-import fastifyEnv, { FastifyEnvOptions } from '@fastify/env'
-import { FastifyInstance, FastifyPluginAsync } from 'fastify'
+import type { FastifyEnvOptions } from '@fastify/env';
+import fastifyEnv from '@fastify/env'
+import type { FastifyInstance, FastifyPluginAsync } from 'fastify'
 
 const schema = {
   type: 'object',
@@ -15,7 +16,7 @@ const schema = {
 const options: FastifyEnvOptions = {
   schema,
   dotenv: true,
-  data: process.env
+  data: process.env,
 }
 
 const envPlugin: FastifyPluginAsync = async (fastify: FastifyInstance) => {

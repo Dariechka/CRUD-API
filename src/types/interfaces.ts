@@ -1,10 +1,10 @@
-export interface EnvVars {
+export type EnvVars = {
   PORT: number
   HOST: string
   APP_NAME: string
 }
 
-export interface Product {
+export type Product = {
   id: string
   name: string
   description: string
@@ -13,6 +13,6 @@ export interface Product {
   inStock: boolean
 }
 
-export interface ErrorResponse {
+export type ErrorResponse = {
   message: string
 }

@@ -1,25 +1,27 @@
 import { buildApp } from './app'
 import 'dotenv/config'
 import type { EnvVars } from './types/interfaces'
-import { productRoutes } from './routes/product.route'
+import { routes } from './routes/product.route'
 
-
-const start = async () => {
+const start = async (): Promise<void> => {
   const fastify = await buildApp()
 
-  fastify.register(productRoutes);
+  fastify.register(routes)
 
-  const envs = fastify.getEnvs<EnvVars>();
-  const port = envs.PORT;
-  const host = envs.HOST;
+  const envs = fastify.getEnvs<EnvVars>()
+  const port = envs.PORT
+  const host = envs.HOST
 
   try {
-    await fastify.listen({ port, host });
-    fastify.log.info(`${envs.APP_NAME} running on http://${host}:${port}`);
+    await fastify.listen({ port, host })
+    fastify.log.info(`${envs.APP_NAME} running on http://${host}:${port}`)
   } catch (err) {
     fastify.log.error(err)
     process.exit(1)
   }
 }
 
-start()
+start().catch((err) => {
+  console.error(err);
+  process.exit(1);
+});
