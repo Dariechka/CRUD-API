@@ -20,5 +20,5 @@ export const productService = {
       return item
     })
     return product
-  },
+  }
 }
