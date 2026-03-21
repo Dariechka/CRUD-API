@@ -1,5 +1,5 @@
-import { products } from '../data/products'
-import type { Product } from '../types/interfaces'
+import { products } from '../data/products.js'
+import type { Product } from '../types/interfaces.js'
 
 export const productService = {
   getProducts: (): Array<Product> => products,

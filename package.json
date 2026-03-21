@@ -4,8 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node dist/server.js",
-    "dev": "cross-env NODE_ENV=development tsx watch src/server.ts",
+    "start:dev": "cross-env NODE_ENV=development tsx src/server.ts",
+    "start:prod": "tsc --outDir dist && cross-env NODE_ENV=production node dist/server.js",
+    "start:multi": "tsc --outDir dist && cross-env NODE_ENV=production node dist/cluster.js",
     "build": "tsc",
     "lint": "eslint 'src/**/*.{ts,js}'",
     "lint:fix": "eslint --fix 'src/**/*.{ts,js}'",
@@ -19,7 +20,7 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "type": "commonjs",
+  "type": "module",
   "bugs": {
     "url": "https://github.com/Dariechka/CRUD-API/issues"
   },

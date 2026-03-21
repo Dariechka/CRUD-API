@@ -1,5 +1,5 @@
 import Fastify, { type FastifyInstance } from 'fastify'
-import envPlugin from './plugins/env'
+import envPlugin from './plugins/env.js'
 
 export const buildApp = async (): Promise<FastifyInstance> => {
   const app = Fastify({ logger: true })

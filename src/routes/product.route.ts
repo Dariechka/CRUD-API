@@ -1,9 +1,9 @@
 import type { FastifyInstance } from 'fastify'
-import { productService } from '../services/product.service'
+import { productService } from '../services/product.service.js'
 import { validate } from 'uuid'
-import type { ErrorResponse, Product } from '../types/interfaces'
+import type { ErrorResponse, Product } from '../types/interfaces.js'
 import { randomUUID } from 'node:crypto'
-import { HttpStatus } from '../types/statuses'
+import { HttpStatus } from '../types/statuses.js'
 
 export async function routes(fastify: FastifyInstance): Promise<void> {
   fastify.get('/api/products', async (_, reply) => {

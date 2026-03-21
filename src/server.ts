@@ -1,7 +1,7 @@
-import { buildApp } from './app'
+import { buildApp } from './app.js'
 import 'dotenv/config'
-import type { EnvVars } from './types/interfaces'
-import { routes } from './routes/product.route'
+import type { EnvVars } from './types/interfaces.js'
+import { routes } from './routes/product.route.js'
 
 const start = async (): Promise<void> => {
   const fastify = await buildApp()

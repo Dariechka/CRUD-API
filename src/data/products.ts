@@ -1,4 +1,4 @@
-import type { Product } from '../types/interfaces'
+import type { Product } from '../types/interfaces.js'
 import { randomUUID } from 'node:crypto'
 
 export const products: Product[] = [

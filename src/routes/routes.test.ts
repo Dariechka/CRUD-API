@@ -1,9 +1,9 @@
 import { describe, expect, it, beforeEach, vi } from 'vitest'
-import { buildApp } from '../app'
-import { HttpStatus } from '../types/statuses'
-import { routes } from './product.route'
-import { productService } from '../services/product.service'
-import type { Product } from '../types/interfaces'
+import { buildApp } from '../app.js'
+import { HttpStatus } from '../types/statuses.js'
+import { routes } from './product.route.js'
+import { productService } from '../services/product.service.js'
+import type { Product } from '../types/interfaces.js'
 import { randomUUID } from 'node:crypto'
 
 
