@@ -20,5 +20,5 @@ export const productStore = {
       return item
     })
     return product
-  }
+  },
 }

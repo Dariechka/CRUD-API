@@ -4,8 +4,8 @@ import type { EnvVars } from './types/interfaces.js'
 import { routes } from './routes/product.route.js'
 import proxy from '@fastify/http-proxy'
 
-const readDbConfig = (): {host: string, port: number} | undefined => {
-  const dbConfigJson = process.env['DB'];
+const readDbConfig = (): { host: string; port: number } | undefined => {
+  const dbConfigJson = process.env['DB']
   if (dbConfigJson) {
     return JSON.parse(dbConfigJson)
   } else {
@@ -16,14 +16,14 @@ const readDbConfig = (): {host: string, port: number} | undefined => {
 const start = async (): Promise<void> => {
   const fastify = await buildApp()
 
-  const db = readDbConfig();
+  const db = readDbConfig()
   if (db) {
     fastify.register(proxy, {
       upstream: `http://${db.host}:${db.port}`,
       prefix: '/',
-    });
+    })
   } else {
-    fastify.register(routes);
+    fastify.register(routes)
   }
 
   const envs = fastify.getEnvs<EnvVars>()
@@ -39,7 +39,7 @@ const start = async (): Promise<void> => {
   }
 }
 
-start().catch((err) => {
-  console.error(err);
-  process.exit(1);
-});
+start().catch(err => {
+  console.error(err)
+  process.exit(1)
+})

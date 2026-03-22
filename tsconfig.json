@@ -25,9 +25,6 @@
     "isolatedModules": true,
     "types": ["node"]
   },
-  "include": [
-    "src",
-    "node_modules/vitest/globals.d.ts"
-  ],
+  "include": ["src", "node_modules/vitest/globals.d.ts"],
   "exclude": ["node_modules", "dist"]
 }

@@ -1,5 +1,5 @@
 import fp from 'fastify-plugin'
-import type { FastifyEnvOptions } from '@fastify/env';
+import type { FastifyEnvOptions } from '@fastify/env'
 import fastifyEnv from '@fastify/env'
 import type { FastifyInstance, FastifyPluginAsync } from 'fastify'
 
