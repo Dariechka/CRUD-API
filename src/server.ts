@@ -2,11 +2,29 @@ import { buildApp } from './app.js'
 import 'dotenv/config'
 import type { EnvVars } from './types/interfaces.js'
 import { routes } from './routes/product.route.js'
+import proxy from '@fastify/http-proxy'
+
+const readDbConfig = (): {host: string, port: number} | undefined => {
+  const dbConfigJson = process.env['DB'];
+  if (dbConfigJson) {
+    return JSON.parse(dbConfigJson)
+  } else {
+    return undefined
+  }
+}
 
 const start = async (): Promise<void> => {
   const fastify = await buildApp()
 
-  fastify.register(routes)
+  const db = readDbConfig();
+  if (db) {
+    fastify.register(proxy, {
+      upstream: `http://${db.host}:${db.port}`,
+      prefix: '/',
+    });
+  } else {
+    fastify.register(routes);
+  }
 
   const envs = fastify.getEnvs<EnvVars>()
   const port = envs.PORT

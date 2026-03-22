@@ -1,5 +1,5 @@
 import type { FastifyInstance } from 'fastify'
-import { productService } from '../services/product.service.js'
+import { productStore } from '../stores/product.store.js'
 import { validate } from 'uuid'
 import type { ErrorResponse, Product } from '../types/interfaces.js'
 import { randomUUID } from 'node:crypto'
@@ -7,7 +7,7 @@ import { HttpStatus } from '../types/statuses.js'
 
 export async function routes(fastify: FastifyInstance): Promise<void> {
   fastify.get('/api/products', async (_, reply) => {
-    return reply.code(HttpStatus.OK).send(productService.getProducts())
+    return reply.code(HttpStatus.OK).send(productStore.getProducts())
   })
   fastify.get<{ Params: { id: string } }>('/api/products/:id', async (request, reply) => {
     const { id } = request.params
@@ -16,7 +16,7 @@ export async function routes(fastify: FastifyInstance): Promise<void> {
       return reply.code(HttpStatus.BAD_REQUEST).send({ message: 'Invalid productId format (must be UUID)' })
     }
 
-    const product = productService.getProductById(id)
+    const product = productStore.getProductById(id)
 
     if (!product) {
       return reply.code(HttpStatus.NOT_FOUND).send({ message: `Product with id ${id} not found` })
@@ -31,13 +31,13 @@ export async function routes(fastify: FastifyInstance): Promise<void> {
       return reply.code(HttpStatus.BAD_REQUEST).send({ message: 'Invalid productId format (must be UUID)' })
     }
 
-    const product = productService.getProductById(id)
+    const product = productStore.getProductById(id)
 
     if (!product) {
       return reply.code(HttpStatus.NOT_FOUND).send({ message: `Product with id ${id} not found` })
     }
 
-    return reply.code(HttpStatus.NO_CONTENT).send(productService.deleteProduct(id))
+    return reply.code(HttpStatus.NO_CONTENT).send(productStore.deleteProduct(id))
   })
   fastify.register(async function (instance: FastifyInstance) {
     instance.put<{
@@ -75,7 +75,7 @@ export async function routes(fastify: FastifyInstance): Promise<void> {
           return reply.code(HttpStatus.BAD_REQUEST).send({ message: 'Invalid productId format (must be UUID)' })
         }
 
-        if (!productService.getProductById(id)) {
+        if (!productStore.getProductById(id)) {
           return reply.code(HttpStatus.NOT_FOUND).send({ message: `Product with id ${id} not found` })
         }
 
@@ -84,7 +84,7 @@ export async function routes(fastify: FastifyInstance): Promise<void> {
           id,
         }
 
-        return reply.code(HttpStatus.OK).send(productService.putProduct(newProduct))
+        return reply.code(HttpStatus.OK).send(productStore.putProduct(newProduct))
       }
     )
     instance.setErrorHandler((error, request, reply) => {
@@ -136,7 +136,7 @@ export async function routes(fastify: FastifyInstance): Promise<void> {
           id: randomUUID(),
         }
 
-        const created = productService.postProduct(newProduct)
+        const created = productStore.postProduct(newProduct)
         return reply.code(HttpStatus.CREATED).send(created)
       }
     )

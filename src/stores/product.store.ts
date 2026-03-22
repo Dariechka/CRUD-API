@@ -1,7 +1,7 @@
 import { products } from '../data/products.js'
 import type { Product } from '../types/interfaces.js'
 
-export const productService = {
+export const productStore = {
   getProducts: (): Array<Product> => products,
   getProductById: (id: string): Product | undefined => products.find(product => product.id === id),
   postProduct: (product: Product): Product => {

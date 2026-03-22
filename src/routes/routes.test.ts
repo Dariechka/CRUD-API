@@ -2,10 +2,9 @@ import { describe, expect, it, beforeEach, vi } from 'vitest'
 import { buildApp } from '../app.js'
 import { HttpStatus } from '../types/statuses.js'
 import { routes } from './product.route.js'
-import { productService } from '../services/product.service.js'
+import { productStore } from '../stores/product.store.js'
 import type { Product } from '../types/interfaces.js'
 import { randomUUID } from 'node:crypto'
-
 
 describe('GET /api/products', () => {
   beforeEach(() => {
@@ -15,7 +14,7 @@ describe('GET /api/products', () => {
     const fastify = await buildApp();
 
     const mockData: Product[] = [];
-    vi.spyOn(productService, 'getProducts').mockReturnValue(mockData);
+    vi.spyOn(productStore, 'getProducts').mockReturnValue(mockData);
 
     await fastify.register(routes);
     await fastify.ready();
@@ -45,7 +44,7 @@ describe('POST /api/products', () => {
       inStock: true,
     };
 
-    vi.spyOn(productService, 'postProduct').mockReturnValue(newProduct);
+    vi.spyOn(productStore, 'postProduct').mockReturnValue(newProduct);
 
     await fastify.register(routes);
     await fastify.ready();
@@ -96,7 +95,7 @@ describe('PUT /api/products/:id', () => {
     await fastify.ready();
 
     const productID = randomUUID();
-    const createdProduct = productService.postProduct({
+    const createdProduct = productStore.postProduct({
       id: productID,
       name: 'Old Name',
       description: 'Old desc',
@@ -177,7 +176,7 @@ describe('DELETE and GET Product /api/products/:id', () => {
     await fastify.register(routes);
     await fastify.ready();
 
-    const testedProduct = productService.getProducts()[0]
+    const testedProduct = productStore.getProducts()[0]
 
     const response = await fastify.inject({
       method: 'GET',
@@ -227,7 +226,7 @@ describe('DELETE and GET Product /api/products/:id', () => {
     await fastify.register(routes);
     await fastify.ready();
 
-    const testedProduct = productService.getProducts()[0]
+    const testedProduct = productStore.getProducts()[0]
     const deleteResponse = await fastify.inject({
       method: 'DELETE',
       url: `/api/products/${testedProduct.id}`,
