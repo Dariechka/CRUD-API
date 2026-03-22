@@ -6,5 +6,20 @@ export const buildApp = async (): Promise<FastifyInstance> => {
 
   await app.register(envPlugin)
 
+  app.setErrorHandler((err, request, reply) => {
+    request.log.error(err);
+
+    const statusCode =
+      err.statusCode && err.statusCode >= 400
+        ? err.statusCode
+        : 500;
+
+    reply.status(statusCode).send({
+      message:
+        statusCode === 500
+          ? 'Something went wrong. Please try again later.'
+          : err.message,
+    });
+  });
   return app
 }
